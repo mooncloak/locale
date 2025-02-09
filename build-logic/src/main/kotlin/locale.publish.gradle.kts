@@ -10,11 +10,13 @@ afterEvaluate {
     publishing {
         repositories {
             maven {
-                url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+                url = uri("https://repo.repsy.io/mvn/mooncloak/public")
 
                 credentials {
-                    username = project.buildVariables.mavenCentralUsername
-                    password = project.buildVariables.mavenCentralPassphrase
+                    username = (project.findProperty("mooncloakRepsyUsername")
+                        ?: System.getenv("mooncloakRepsyUsername")) as? String
+                    password = (project.findProperty("mooncloakRepsyPassword")
+                        ?: System.getenv("mooncloakRepsyPassword")) as? String
                 }
             }
         }
