@@ -131,18 +131,17 @@ android {
 }
 
 /**
- * Creates and defines the locale database. This uses the SqlDelight library and Postgresql.
+ * Creates and defines the locale database. This uses the SqlDelight library and SQLite.
  *
  * @see [SqlDelight Documentation](https://sqldelight.github.io/sqldelight)
  */
 sqldelight {
     databases {
         create("LocaleDatabase") {
-            packageName.set("com.mooncloak.kodetools.locale.storage.postgresql")
-            srcDirs("src/main/sqldelight")
-            schemaOutputDirectory.set(file("src/main/sqldelight/databases"))
+            packageName.set("com.mooncloak.kodetools.locale.storage.sqlite")
+            srcDirs("src/commonMain/sqldelight")
+            schemaOutputDirectory.set(file("src/commonMain/sqldelight/databases"))
             verifyMigrations.set(false)
         }
     }
 }
-
