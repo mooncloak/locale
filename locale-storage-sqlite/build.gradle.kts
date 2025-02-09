@@ -1,14 +1,37 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    kotlin("multiplatform")
     kotlin("plugin.serialization")
     id("com.android.library")
     id("org.jetbrains.dokka")
-    id("locale.multiplatform")
     id("locale.publish")
+    id("app.cash.sqldelight")
 }
 
 kotlin {
+    applyDefaultHierarchyTemplate()
+
+    macosX64()
+    macosArm64()
+
+    linuxArm64()
+    linuxX64()
+
+    mingwX64()
+
+    iosArm64()
+    iosX64()
+    iosSimulatorArm64()
+
+    androidTarget {
+        publishAllLibraryVariants()
+    }
+
+    jvm()
+
+    explicitApi()
+
     sourceSets {
         all {
             // Disable warnings and errors related to these expected @OptIn annotations.
@@ -19,6 +42,8 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
+                api(project(":locale-core"))
+
                 // Coroutines
                 // https://github.com/Kotlin/kotlinx.coroutines
                 implementation(KotlinX.coroutines.core)
@@ -30,6 +55,9 @@ kotlin {
                 // Time
                 // https://github.com/Kotlin/kotlinx-datetime
                 implementation(KotlinX.datetime)
+
+                // Database Adapters
+                implementation("app.cash.sqldelight:primitive-adapters:_")
             }
         }
 
@@ -40,11 +68,24 @@ kotlin {
             }
         }
 
+        val jvmMain by getting {
+            dependencies {
+                // Database Driver - SQLite
+                api("app.cash.sqldelight:sqlite-driver:_")
+            }
+        }
+
+        val androidMain by getting {
+            dependencies {
+                // Database Driver - SQLite
+                api("app.cash.sqldelight:android-driver:_")
+            }
+        }
+
         val nativeMain by getting {
             dependencies {
-                // Kotlin multiplatform I/O
-                // https://github.com/Kotlin/kotlinx-io
-                implementation("org.jetbrains.kotlinx:kotlinx-io-core:_")
+                // Database Driver - SQLite
+                api("app.cash.sqldelight:native-driver:_")
             }
         }
     }
@@ -52,7 +93,7 @@ kotlin {
 
 android {
     compileSdk = BuildConstants.Android.compileSdkVersion
-    namespace = "com.mooncloak.kodetools.locale.core"
+    namespace = "com.mooncloak.kodetools.locale.storage.sqlite"
 
     defaultConfig {
         minSdk = BuildConstants.Android.minSdkVersion
@@ -88,3 +129,20 @@ android {
     sourceSets["test"].java.srcDirs("src/androidTest/kotlin")
     sourceSets["test"].res.srcDirs("src/androidTest/res")
 }
+
+/**
+ * Creates and defines the locale database. This uses the SqlDelight library and Postgresql.
+ *
+ * @see [SqlDelight Documentation](https://sqldelight.github.io/sqldelight)
+ */
+sqldelight {
+    databases {
+        create("LocaleDatabase") {
+            packageName.set("com.mooncloak.kodetools.locale.storage.postgresql")
+            srcDirs("src/main/sqldelight")
+            schemaOutputDirectory.set(file("src/main/sqldelight/databases"))
+            verifyMigrations.set(false)
+        }
+    }
+}
+

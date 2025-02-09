@@ -6,6 +6,7 @@ plugins {
     id("com.android.library") version "8.2.2" apply false
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
+    id("app.cash.sqldelight") apply false
     id("locale.variables")
 }
 

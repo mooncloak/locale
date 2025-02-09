@@ -19,6 +19,8 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
+                api(project(":locale-core"))
+
                 // Coroutines
                 // https://github.com/Kotlin/kotlinx.coroutines
                 implementation(KotlinX.coroutines.core)
@@ -52,7 +54,7 @@ kotlin {
 
 android {
     compileSdk = BuildConstants.Android.compileSdkVersion
-    namespace = "com.mooncloak.kodetools.locale.core"
+    namespace = "com.mooncloak.kodetools.locale.storage.json"
 
     defaultConfig {
         minSdk = BuildConstants.Android.minSdkVersion

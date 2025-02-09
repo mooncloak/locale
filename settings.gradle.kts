@@ -32,3 +32,6 @@ plugins {
 rootProject.name = "locale"
 
 include(":locale-core")
+include(":locale-storage-sqlite")
+include(":locale-storage-postgresql")
+include(":locale-storage-json")
