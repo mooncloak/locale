@@ -4,14 +4,14 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * A wrapper class around a single [Country] and optional [Region].
+ * A wrapper class around a single [Country] and zero or more [Region]s.
  *
  * @property [country] The [Country].
  *
- * @property [region] The optional [Region].
+ * @property [regions] The [Region]s.
  */
 @Serializable
-public data class CountryAndRegion public constructor(
+public data class CountryWithRegions public constructor(
     @SerialName(value = "country") public val country: Country,
-    @SerialName(value = "region") public val region: Region? = null
+    @SerialName(value = "regions") public val regions: List<Region> = emptyList()
 )
