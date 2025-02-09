@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    kotlin("plugin.serialization")
     id("com.android.library")
     id("org.jetbrains.dokka")
     id("kmd.multiplatform")
@@ -21,6 +22,14 @@ kotlin {
                 // Coroutines
                 // https://github.com/Kotlin/kotlinx.coroutines
                 implementation(KotlinX.coroutines.core)
+
+                // Serialization
+                // https://github.com/Kotlin/kotlinx.serialization
+                implementation(KotlinX.serialization.json)
+
+                // Time
+                // https://github.com/Kotlin/kotlinx-datetime
+                implementation(KotlinX.datetime)
             }
         }
 
