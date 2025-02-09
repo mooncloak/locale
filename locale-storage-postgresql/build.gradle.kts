@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
     id("app.cash.sqldelight")
+    id("locale.publish")
 }
 
 kotlin {

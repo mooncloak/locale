@@ -5,8 +5,8 @@ plugins {
     kotlin("plugin.serialization")
     id("com.android.library")
     id("org.jetbrains.dokka")
-    id("locale.publish")
     id("app.cash.sqldelight")
+    id("locale.publish")
 }
 
 kotlin {
