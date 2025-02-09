@@ -9,6 +9,7 @@ CREATE TABLE region (
     country_code TEXT NOT NULL,
     name TEXT,
     flag TEXT,
+    emoji_flag TEXT,
     type TEXT
 );
 
@@ -17,26 +18,34 @@ CREATE INDEX Region_code_index ON region(code);
 CREATE INDEX Region_country_code_index ON region(code);
 CREATE INDEX Region_name_index ON region(name);
 
-INSERT INTO region (id, created, updated, code, country_code, name, flag, type)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+insert:
+INSERT INTO region (id, created, updated, code, country_code, name, flag, emoji_flag, type)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 updateAllById:
 UPDATE region
 SET name = :name,
     type = :type,
-    flag = :flag
+    flag = :flag,
+    emoji_flag = :emojiFlag
 WHERE id = :id;
 
 updateAllByCode:
 UPDATE region
 SET name = :name,
     type = :type,
-    flag = :flag
+    flag = :flag,
+    emoji_flag = :emojiFlag
 WHERE code = :code;
 
 countAll:
 SELECT COUNT(*)
 FROM region;
+
+countAllInCountry:
+SELECT COUNT(*)
+FROM region
+WHERE country_code = :countryCode;
 
 selectById:
 SELECT *
@@ -57,6 +66,21 @@ SELECT *
 FROM region
 WHERE country_code = :countryCode;
 
+selectPage:
+SELECT *
+FROM region
+ORDER BY code
+LIMIT :limit
+OFFSET :offset;
+
+selectPageInCountry:
+SELECT *
+FROM region
+WHERE country_code = :countryCode
+ORDER BY code
+LIMIT :limit
+OFFSET :offset;
+
 selectIn:
 SELECT *
 FROM region
@@ -69,6 +93,10 @@ WHERE id = :id;
 deleteByCode:
 DELETE FROM region
 WHERE code = :code;
+
+deleteIn:
+DELETE FROM region
+WHERE code IN :codes;
 
 deleteAll:
 DELETE FROM region;

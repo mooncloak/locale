@@ -1,28 +1,31 @@
-package com.mooncloak.kodetools.locale.storage.sqlite
+package com.mooncloak.kodetools.locale.storage.postgresql
 
 import com.mooncloak.kodetools.locale.storage.*
-import com.mooncloak.kodetools.locale.storage.sqlite.source.CountrySqliteSource
-import com.mooncloak.kodetools.locale.storage.sqlite.source.RegionSqliteSource
+import com.mooncloak.kodetools.locale.storage.postgresql.source.CountrySqliteSource
+import com.mooncloak.kodetools.locale.storage.postgresql.source.RegionSqliteSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.datetime.Clock
 
-public fun StorageProvider.Companion.sqlite(
-    driverFactory: SqlDriverFactory,
-    filePath: String? = null,
+public fun StorageProvider.Companion.postgresql(
+    username: () -> String,
+    passphrase: () -> String,
+    url: () -> String,
+    driverFactory: SqlDriverFactory = SqlDriverFactory.hikari(),
     clock: Clock = Clock.System,
     dispatcher: CoroutineDispatcher = Dispatchers.IO
-): StorageProvider = SqliteStorageProvider(
+): StorageProvider = PostgresqlStorageProvider(
     databaseProvider = DatabaseProvider(
         driverFactory = driverFactory,
-        filePath = filePath
+        username = username,
+        passphrase = passphrase,
+        url = url
     ),
     clock = clock,
     dispatcher = dispatcher
 )
 
-internal class SqliteStorageProvider internal constructor(
+internal class PostgresqlStorageProvider internal constructor(
     private val databaseProvider: DatabaseProvider,
     private val clock: Clock = Clock.System,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO

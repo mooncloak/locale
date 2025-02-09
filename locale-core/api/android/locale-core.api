@@ -1,4 +1,4 @@
-public final class com/mooncloak/kodetools/locale/Country {
+public final class com/mooncloak/kodetools/locale/Country : com/mooncloak/kodetools/locale/Location {
 	public static final field Companion Lcom/mooncloak/kodetools/locale/Country$Companion;
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -10,10 +10,11 @@ public final class com/mooncloak/kodetools/locale/Country {
 	public final fun copy-zGKCu-8 (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/mooncloak/kodetools/locale/Country;
 	public static synthetic fun copy-zGKCu-8$default (Lcom/mooncloak/kodetools/locale/Country;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/mooncloak/kodetools/locale/Country;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getCode-ahZdqPg ()Ljava/lang/String;
+	public synthetic fun getCode ()Lcom/mooncloak/kodetools/locale/LocationCode;
+	public fun getCode-ahZdqPg ()Ljava/lang/String;
 	public final fun getEmojiFlag ()Ljava/lang/String;
 	public final fun getFlag ()Ljava/lang/String;
-	public final fun getName ()Ljava/lang/String;
+	public fun getName ()Ljava/lang/String;
 	public final fun getRegionType ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -211,6 +212,15 @@ public final class com/mooncloak/kodetools/locale/LocaleKt {
 	public static final fun component4 (Lcom/mooncloak/kodetools/locale/Locale;)Ljava/util/List;
 }
 
+public abstract interface class com/mooncloak/kodetools/locale/Location {
+	public static final field Companion Lcom/mooncloak/kodetools/locale/Location$Companion;
+	public abstract fun getCode ()Lcom/mooncloak/kodetools/locale/LocationCode;
+	public abstract fun getName ()Ljava/lang/String;
+}
+
+public final class com/mooncloak/kodetools/locale/Location$Companion {
+}
+
 public abstract interface class com/mooncloak/kodetools/locale/LocationCode {
 	public static final field Companion Lcom/mooncloak/kodetools/locale/LocationCode$Companion;
 	public abstract fun getValue ()Ljava/lang/String;
@@ -221,7 +231,7 @@ public final class com/mooncloak/kodetools/locale/LocationCode$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class com/mooncloak/kodetools/locale/Region {
+public final class com/mooncloak/kodetools/locale/Region : com/mooncloak/kodetools/locale/Location {
 	public static final field Companion Lcom/mooncloak/kodetools/locale/Region$Companion;
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -233,10 +243,11 @@ public final class com/mooncloak/kodetools/locale/Region {
 	public final fun copy-Z91tBw8 (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/mooncloak/kodetools/locale/Region;
 	public static synthetic fun copy-Z91tBw8$default (Lcom/mooncloak/kodetools/locale/Region;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/mooncloak/kodetools/locale/Region;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getCode-PayIdGg ()Ljava/lang/String;
+	public synthetic fun getCode ()Lcom/mooncloak/kodetools/locale/LocationCode;
+	public fun getCode-PayIdGg ()Ljava/lang/String;
 	public final fun getEmojiFlag ()Ljava/lang/String;
 	public final fun getFlag ()Ljava/lang/String;
-	public final fun getName ()Ljava/lang/String;
+	public fun getName ()Ljava/lang/String;
 	public final fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -275,5 +286,111 @@ public final class com/mooncloak/kodetools/locale/RegionCode : com/mooncloak/kod
 
 public final class com/mooncloak/kodetools/locale/RegionCode$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/mooncloak/kodetools/locale/storage/CountryRepository : com/mooncloak/kodetools/locale/storage/LocationRepository {
+	public static final field Companion Lcom/mooncloak/kodetools/locale/storage/CountryRepository$Companion;
+	public abstract fun count (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun get (IILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun get-BS5zEgQ (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getIn (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/CountryRepository$Companion {
+}
+
+public final class com/mooncloak/kodetools/locale/storage/CountryRepository$DefaultImpls {
+	public static synthetic fun get$default (Lcom/mooncloak/kodetools/locale/storage/CountryRepository;IILkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun getIn (Lcom/mooncloak/kodetools/locale/storage/CountryRepository;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/CountryRepositoryKt {
+	public static final fun getOrNull-I4AV6Cs (Lcom/mooncloak/kodetools/locale/storage/CountryRepository;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/mooncloak/kodetools/locale/storage/LocationRepository {
+	public static final field Companion Lcom/mooncloak/kodetools/locale/storage/LocationRepository$Companion;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/LocationRepository$Companion {
+}
+
+public abstract interface class com/mooncloak/kodetools/locale/storage/MutableCountryRepository : com/mooncloak/kodetools/locale/storage/CountryRepository {
+	public static final field Companion Lcom/mooncloak/kodetools/locale/storage/MutableCountryRepository$Companion;
+	public abstract fun add (Lcom/mooncloak/kodetools/locale/Country;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun addAll (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun remove-BS5zEgQ (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun removeIn (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun update (Lcom/mooncloak/kodetools/locale/Country;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun upsert (Lcom/mooncloak/kodetools/locale/Country;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/MutableCountryRepository$Companion {
+}
+
+public final class com/mooncloak/kodetools/locale/storage/MutableCountryRepository$DefaultImpls {
+	public static fun getIn (Lcom/mooncloak/kodetools/locale/storage/MutableCountryRepository;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun upsert (Lcom/mooncloak/kodetools/locale/storage/MutableCountryRepository;Lcom/mooncloak/kodetools/locale/Country;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/mooncloak/kodetools/locale/storage/MutableRegionRepository : com/mooncloak/kodetools/locale/storage/RegionRepository {
+	public static final field Companion Lcom/mooncloak/kodetools/locale/storage/MutableRegionRepository$Companion;
+	public abstract fun add (Lcom/mooncloak/kodetools/locale/Region;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun addAll (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun remove-ChblmNY (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun removeIn (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun update (Lcom/mooncloak/kodetools/locale/Region;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun upsert (Lcom/mooncloak/kodetools/locale/Region;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/MutableRegionRepository$Companion {
+}
+
+public final class com/mooncloak/kodetools/locale/storage/MutableRegionRepository$DefaultImpls {
+	public static fun getIn (Lcom/mooncloak/kodetools/locale/storage/MutableRegionRepository;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun upsert (Lcom/mooncloak/kodetools/locale/storage/MutableRegionRepository;Lcom/mooncloak/kodetools/locale/Region;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/mooncloak/kodetools/locale/storage/RegionRepository : com/mooncloak/kodetools/locale/storage/LocationRepository {
+	public static final field Companion Lcom/mooncloak/kodetools/locale/storage/RegionRepository$Companion;
+	public abstract fun count-nRgiqPk (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun get-1Gct7ZM (Ljava/lang/String;IILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun get-ChblmNY (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getAll-nRgiqPk (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getIn (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/RegionRepository$Companion {
+}
+
+public final class com/mooncloak/kodetools/locale/storage/RegionRepository$DefaultImpls {
+	public static synthetic fun count-nRgiqPk$default (Lcom/mooncloak/kodetools/locale/storage/RegionRepository;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun get-1Gct7ZM$default (Lcom/mooncloak/kodetools/locale/storage/RegionRepository;Ljava/lang/String;IILkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun getAll-nRgiqPk$default (Lcom/mooncloak/kodetools/locale/storage/RegionRepository;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun getIn (Lcom/mooncloak/kodetools/locale/storage/RegionRepository;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/RegionRepositoryKt {
+	public static final fun getOrNull-FOhncOA (Lcom/mooncloak/kodetools/locale/storage/RegionRepository;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/mooncloak/kodetools/locale/storage/StorageProvider : java/lang/AutoCloseable {
+	public static final field Companion Lcom/mooncloak/kodetools/locale/storage/StorageProvider$Companion;
+	public abstract fun close ()V
+	public abstract fun getCountryRepository ()Lcom/mooncloak/kodetools/locale/storage/CountryRepository;
+	public abstract fun getMutableCountryRepository ()Lcom/mooncloak/kodetools/locale/storage/MutableCountryRepository;
+	public abstract fun getMutableRegionRepository ()Lcom/mooncloak/kodetools/locale/storage/MutableRegionRepository;
+	public abstract fun getRegionRepository ()Lcom/mooncloak/kodetools/locale/storage/RegionRepository;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/StorageProvider$Companion {
+}
+
+public final class com/mooncloak/kodetools/locale/storage/StorageProvider$DefaultImpls {
+	public static fun getCountryRepository (Lcom/mooncloak/kodetools/locale/storage/StorageProvider;)Lcom/mooncloak/kodetools/locale/storage/CountryRepository;
+	public static fun getRegionRepository (Lcom/mooncloak/kodetools/locale/storage/StorageProvider;)Lcom/mooncloak/kodetools/locale/storage/RegionRepository;
 }
 

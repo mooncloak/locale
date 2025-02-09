@@ -1,6 +1,6 @@
 # locale
 
-Kotlin multiplatform shell command runner.
+Kotlin multiplatform locale and location utils.
 
 <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/mooncloak/locale">
 

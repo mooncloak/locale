@@ -1,7 +1,7 @@
 import kotlinx.datetime.Instant;
 
 CREATE TABLE country (
-    database_id SERIAL PRIMARY KEY,
+    database_id INTEGER PRIMARY KEY NOT NULL,
     id TEXT NOT NULL UNIQUE,
     created INTEGER AS Instant NOT NULL,
     updated INTEGER AS Instant NOT NULL,
@@ -16,6 +16,7 @@ CREATE INDEX Country_id_index ON country(id);
 CREATE INDEX Country_code_index ON country(code);
 CREATE INDEX Country_name_index ON country(name);
 
+insert:
 INSERT INTO country (id, created, updated, code, name, region_type, flag, emoji_flag)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
@@ -74,6 +75,10 @@ WHERE id = :id;
 deleteByCode:
 DELETE FROM country
 WHERE code = :code;
+
+deleteIn:
+DELETE FROM country
+WHERE code IN :codes;
 
 deleteAll:
 DELETE FROM country;

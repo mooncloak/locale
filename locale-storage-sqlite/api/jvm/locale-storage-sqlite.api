@@ -1,0 +1,154 @@
+public final class com/mooncloak/kodetools/locale/storage/sqlite/Country {
+	public fun <init> (JLjava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()J
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lkotlinx/datetime/Instant;
+	public final fun component4 ()Lkotlinx/datetime/Instant;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (JLjava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/mooncloak/kodetools/locale/storage/sqlite/Country;
+	public static synthetic fun copy$default (Lcom/mooncloak/kodetools/locale/storage/sqlite/Country;JLjava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/mooncloak/kodetools/locale/storage/sqlite/Country;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCode ()Ljava/lang/String;
+	public final fun getCreated ()Lkotlinx/datetime/Instant;
+	public final fun getDatabase_id ()J
+	public final fun getEmoji_flag ()Ljava/lang/String;
+	public final fun getFlag ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getRegion_type ()Ljava/lang/String;
+	public final fun getUpdated ()Lkotlinx/datetime/Instant;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/sqlite/Country$Adapter {
+	public fun <init> (Lapp/cash/sqldelight/ColumnAdapter;Lapp/cash/sqldelight/ColumnAdapter;)V
+	public final fun getCreatedAdapter ()Lapp/cash/sqldelight/ColumnAdapter;
+	public final fun getUpdatedAdapter ()Lapp/cash/sqldelight/ColumnAdapter;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/sqlite/CountryQueries : app/cash/sqldelight/TransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;Lcom/mooncloak/kodetools/locale/storage/sqlite/Country$Adapter;)V
+	public final fun countAll ()Lapp/cash/sqldelight/Query;
+	public final fun deleteAll ()V
+	public final fun deleteByCode (Ljava/lang/String;)V
+	public final fun deleteById (Ljava/lang/String;)V
+	public final fun deleteIn (Ljava/util/Collection;)V
+	public final fun insert (Ljava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun selectAll ()Lapp/cash/sqldelight/Query;
+	public final fun selectAll (Lkotlin/jvm/functions/Function9;)Lapp/cash/sqldelight/Query;
+	public final fun selectByCode (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectByCode (Ljava/lang/String;Lkotlin/jvm/functions/Function9;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;Lkotlin/jvm/functions/Function9;)Lapp/cash/sqldelight/Query;
+	public final fun selectIn (Ljava/util/Collection;)Lapp/cash/sqldelight/Query;
+	public final fun selectIn (Ljava/util/Collection;Lkotlin/jvm/functions/Function9;)Lapp/cash/sqldelight/Query;
+	public final fun selectPage (JJ)Lapp/cash/sqldelight/Query;
+	public final fun selectPage (JJLkotlin/jvm/functions/Function9;)Lapp/cash/sqldelight/Query;
+	public final fun updateAllByCode (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;)V
+	public final fun updateAllById (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;)V
+}
+
+public final class com/mooncloak/kodetools/locale/storage/sqlite/JvmSqlDriverFactoryKt {
+	public static final fun invoke (Lcom/mooncloak/kodetools/locale/storage/sqlite/SqlDriverFactory$Companion;ZZ)Lcom/mooncloak/kodetools/locale/storage/sqlite/SqlDriverFactory;
+	public static synthetic fun invoke$default (Lcom/mooncloak/kodetools/locale/storage/sqlite/SqlDriverFactory$Companion;ZZILjava/lang/Object;)Lcom/mooncloak/kodetools/locale/storage/sqlite/SqlDriverFactory;
+}
+
+public abstract interface class com/mooncloak/kodetools/locale/storage/sqlite/LocaleDatabase : app/cash/sqldelight/Transacter {
+	public static final field Companion Lcom/mooncloak/kodetools/locale/storage/sqlite/LocaleDatabase$Companion;
+	public abstract fun getCountryQueries ()Lcom/mooncloak/kodetools/locale/storage/sqlite/CountryQueries;
+	public abstract fun getRegionQueries ()Lcom/mooncloak/kodetools/locale/storage/sqlite/RegionQueries;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/sqlite/LocaleDatabase$Companion {
+	public final fun getSchema ()Lapp/cash/sqldelight/db/SqlSchema;
+	public final fun invoke (Lapp/cash/sqldelight/db/SqlDriver;Lcom/mooncloak/kodetools/locale/storage/sqlite/Country$Adapter;Lcom/mooncloak/kodetools/locale/storage/sqlite/Region$Adapter;)Lcom/mooncloak/kodetools/locale/storage/sqlite/LocaleDatabase;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/sqlite/Region {
+	public fun <init> (JLjava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()J
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lkotlinx/datetime/Instant;
+	public final fun component4 ()Lkotlinx/datetime/Instant;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (JLjava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/mooncloak/kodetools/locale/storage/sqlite/Region;
+	public static synthetic fun copy$default (Lcom/mooncloak/kodetools/locale/storage/sqlite/Region;JLjava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/mooncloak/kodetools/locale/storage/sqlite/Region;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCode ()Ljava/lang/String;
+	public final fun getCountry_code ()Ljava/lang/String;
+	public final fun getCreated ()Lkotlinx/datetime/Instant;
+	public final fun getDatabase_id ()J
+	public final fun getEmoji_flag ()Ljava/lang/String;
+	public final fun getFlag ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public final fun getUpdated ()Lkotlinx/datetime/Instant;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/sqlite/Region$Adapter {
+	public fun <init> (Lapp/cash/sqldelight/ColumnAdapter;Lapp/cash/sqldelight/ColumnAdapter;)V
+	public final fun getCreatedAdapter ()Lapp/cash/sqldelight/ColumnAdapter;
+	public final fun getUpdatedAdapter ()Lapp/cash/sqldelight/ColumnAdapter;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/sqlite/RegionQueries : app/cash/sqldelight/TransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;Lcom/mooncloak/kodetools/locale/storage/sqlite/Region$Adapter;)V
+	public final fun countAll ()Lapp/cash/sqldelight/Query;
+	public final fun countAllInCountry (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun deleteAll ()V
+	public final fun deleteByCode (Ljava/lang/String;)V
+	public final fun deleteById (Ljava/lang/String;)V
+	public final fun deleteIn (Ljava/util/Collection;)V
+	public final fun insert (Ljava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun selectAll ()Lapp/cash/sqldelight/Query;
+	public final fun selectAll (Lkotlin/jvm/functions/Function10;)Lapp/cash/sqldelight/Query;
+	public final fun selectAllForCountry (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectAllForCountry (Ljava/lang/String;Lkotlin/jvm/functions/Function10;)Lapp/cash/sqldelight/Query;
+	public final fun selectByCode (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectByCode (Ljava/lang/String;Lkotlin/jvm/functions/Function10;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;Lkotlin/jvm/functions/Function10;)Lapp/cash/sqldelight/Query;
+	public final fun selectIn (Ljava/util/Collection;)Lapp/cash/sqldelight/Query;
+	public final fun selectIn (Ljava/util/Collection;Lkotlin/jvm/functions/Function10;)Lapp/cash/sqldelight/Query;
+	public final fun selectPage (JJ)Lapp/cash/sqldelight/Query;
+	public final fun selectPage (JJLkotlin/jvm/functions/Function10;)Lapp/cash/sqldelight/Query;
+	public final fun selectPageInCountry (Ljava/lang/String;JJ)Lapp/cash/sqldelight/Query;
+	public final fun selectPageInCountry (Ljava/lang/String;JJLkotlin/jvm/functions/Function10;)Lapp/cash/sqldelight/Query;
+	public final fun updateAllByCode (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;)V
+	public final fun updateAllById (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;)V
+}
+
+public abstract interface class com/mooncloak/kodetools/locale/storage/sqlite/SqlDriverFactory {
+	public static final field Companion Lcom/mooncloak/kodetools/locale/storage/sqlite/SqlDriverFactory$Companion;
+	public abstract fun create (Ljava/lang/String;)Lapp/cash/sqldelight/db/SqlDriver;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/sqlite/SqlDriverFactory$Companion {
+}
+
+public final class com/mooncloak/kodetools/locale/storage/sqlite/SqliteStorageProviderKt {
+	public static final fun sqlite (Lcom/mooncloak/kodetools/locale/storage/StorageProvider$Companion;Lcom/mooncloak/kodetools/locale/storage/sqlite/SqlDriverFactory;Ljava/lang/String;Lkotlinx/datetime/Clock;Lkotlinx/coroutines/CoroutineDispatcher;)Lcom/mooncloak/kodetools/locale/storage/StorageProvider;
+	public static synthetic fun sqlite$default (Lcom/mooncloak/kodetools/locale/storage/StorageProvider$Companion;Lcom/mooncloak/kodetools/locale/storage/sqlite/SqlDriverFactory;Ljava/lang/String;Lkotlinx/datetime/Clock;Lkotlinx/coroutines/CoroutineDispatcher;ILjava/lang/Object;)Lcom/mooncloak/kodetools/locale/storage/StorageProvider;
+}
+
+public final class com/mooncloak/kodetools/locale/storage/sqlite/adapter/InstantAsMillisecondsLongDatabaseAdapter : app/cash/sqldelight/ColumnAdapter {
+	public static final field INSTANCE Lcom/mooncloak/kodetools/locale/storage/sqlite/adapter/InstantAsMillisecondsLongDatabaseAdapter;
+	public fun decode (J)Lkotlinx/datetime/Instant;
+	public synthetic fun decode (Ljava/lang/Object;)Ljava/lang/Object;
+	public synthetic fun encode (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun encode (Lkotlinx/datetime/Instant;)Ljava/lang/Long;
+}
+
