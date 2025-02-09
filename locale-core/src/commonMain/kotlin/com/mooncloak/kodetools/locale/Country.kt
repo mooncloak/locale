@@ -18,9 +18,9 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 public data class Country public constructor(
-    @SerialName(value = "code") public val code: CountryCode,
-    @SerialName(value = "name") public val name: String? = null,
+    @SerialName(value = "code") public override val code: CountryCode,
+    @SerialName(value = "name") public override val name: String? = null,
     @SerialName(value = "region_type") public val regionType: String? = null,
     @SerialName(value = "flag") public val flag: String? = null,
     @SerialName(value = "emoji") public val emojiFlag: String? = null
-)
+) : Location

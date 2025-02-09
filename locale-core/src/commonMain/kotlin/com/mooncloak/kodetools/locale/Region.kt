@@ -17,11 +17,10 @@ import kotlinx.serialization.Serializable
  * @property [emojiFlag] An emoji representation of this country's flag.
  */
 @Serializable
-@SerialName(value = "default")
 public data class Region public constructor(
-    @SerialName(value = "code") public val code: RegionCode,
-    @SerialName(value = "name") public val name: String? = null,
+    @SerialName(value = "code") public override val code: RegionCode,
+    @SerialName(value = "name") public override val name: String? = null,
     @SerialName(value = "type") public val type: String? = null,
     @SerialName(value = "flag") public val flag: String? = null,
     @SerialName(value = "emoji") public val emojiFlag: String? = null
-)
+) : Location

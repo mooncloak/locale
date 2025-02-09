@@ -5,7 +5,7 @@ import com.mooncloak.kodetools.locale.Region
 import com.mooncloak.kodetools.locale.RegionCode
 import kotlin.coroutines.cancellation.CancellationException
 
-public interface RegionRepository {
+public interface RegionRepository : LocationRepository {
 
     public suspend fun count(code: CountryCode? = null): Int
 

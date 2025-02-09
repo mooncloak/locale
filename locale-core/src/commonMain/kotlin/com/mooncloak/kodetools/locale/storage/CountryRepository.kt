@@ -4,7 +4,7 @@ import com.mooncloak.kodetools.locale.Country
 import com.mooncloak.kodetools.locale.CountryCode
 import kotlin.coroutines.cancellation.CancellationException
 
-public interface CountryRepository {
+public interface CountryRepository : LocationRepository {
 
     public suspend fun count(): Int
 
