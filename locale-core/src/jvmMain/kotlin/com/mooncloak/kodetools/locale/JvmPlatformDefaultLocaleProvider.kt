@@ -3,10 +3,10 @@ package com.mooncloak.kodetools.locale
 @ExperimentalLocaleApi
 internal actual object PlatformDefaultLocaleProvider : Locale.Provider {
 
-    override fun getDefault(): Locale =
+    actual override fun getDefault(): Locale =
         JvmLocale(java.util.Locale.getDefault())
 
-    override fun getAvailable(): List<Locale> =
+    actual override fun getAvailable(): List<Locale> =
         java.util.Locale.getAvailableLocales().map { JvmLocale(it) }
 
     actual val US: Locale

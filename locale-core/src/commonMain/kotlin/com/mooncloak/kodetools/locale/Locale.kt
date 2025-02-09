@@ -289,10 +289,17 @@ public operator fun Locale.component3(): String? = script
 public operator fun Locale.component4(): List<String> = variants
 
 @ExperimentalLocaleApi
-internal expect object PlatformDefaultLocaleParser : Locale.Parser
+internal expect object PlatformDefaultLocaleParser : Locale.Parser {
+
+    override fun parse(languageTag: String): Locale
+    override fun fromParts(language: String?, region: String?, script: String?, variants: List<String>): Locale
+}
 
 @ExperimentalLocaleApi
 internal expect object PlatformDefaultLocaleProvider : Locale.Provider {
+
+    override fun getDefault(): Locale
+    override fun getAvailable(): List<Locale>
 
     val US: Locale
     val ENGLISH: Locale

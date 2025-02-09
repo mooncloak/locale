@@ -3,11 +3,11 @@ package com.mooncloak.kodetools.locale
 @ExperimentalLocaleApi
 internal actual object PlatformDefaultLocaleProvider : Locale.Provider {
 
-    override fun getDefault(): Locale {
+    actual override fun getDefault(): Locale {
         TODO("Not yet implemented")
     }
 
-    override fun getAvailable(): List<Locale> {
+    actual override fun getAvailable(): List<Locale> {
         TODO("Not yet implemented")
     }
 
