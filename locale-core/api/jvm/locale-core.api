@@ -37,7 +37,6 @@ public final class com/mooncloak/kodetools/locale/Country$Companion {
 public final class com/mooncloak/kodetools/locale/CountryCode : com/mooncloak/kodetools/locale/LocationCode {
 	public static final field Companion Lcom/mooncloak/kodetools/locale/CountryCode$Companion;
 	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/mooncloak/kodetools/locale/CountryCode;
-	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
 	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
@@ -53,6 +52,10 @@ public final class com/mooncloak/kodetools/locale/CountryCode : com/mooncloak/ko
 
 public final class com/mooncloak/kodetools/locale/CountryCode$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/mooncloak/kodetools/locale/CountryCodeKt {
+	public static final fun invoke (Lcom/mooncloak/kodetools/locale/CountryCode$Companion;Ljava/lang/String;)Ljava/lang/String;
 }
 
 public final class com/mooncloak/kodetools/locale/CountryWithRegion {
@@ -231,6 +234,10 @@ public final class com/mooncloak/kodetools/locale/LocationCode$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/mooncloak/kodetools/locale/LocationCodeKt {
+	public static final fun invoke (Lcom/mooncloak/kodetools/locale/LocationCode$Companion;Ljava/lang/String;)Lcom/mooncloak/kodetools/locale/LocationCode;
+}
+
 public final class com/mooncloak/kodetools/locale/Region : com/mooncloak/kodetools/locale/Location {
 	public static final field Companion Lcom/mooncloak/kodetools/locale/Region$Companion;
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -270,7 +277,6 @@ public final class com/mooncloak/kodetools/locale/Region$Companion {
 public final class com/mooncloak/kodetools/locale/RegionCode : com/mooncloak/kodetools/locale/LocationCode {
 	public static final field Companion Lcom/mooncloak/kodetools/locale/RegionCode$Companion;
 	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/mooncloak/kodetools/locale/RegionCode;
-	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
 	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
@@ -286,6 +292,10 @@ public final class com/mooncloak/kodetools/locale/RegionCode : com/mooncloak/kod
 
 public final class com/mooncloak/kodetools/locale/RegionCode$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/mooncloak/kodetools/locale/RegionCodeKt {
+	public static final fun invoke (Lcom/mooncloak/kodetools/locale/RegionCode$Companion;Ljava/lang/String;)Ljava/lang/String;
 }
 
 public abstract interface class com/mooncloak/kodetools/locale/storage/CountryRepository : com/mooncloak/kodetools/locale/storage/LocationRepository {
