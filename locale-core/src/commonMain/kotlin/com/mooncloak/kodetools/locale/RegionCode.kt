@@ -18,7 +18,7 @@ import kotlin.jvm.JvmInline
  */
 @JvmInline
 @Serializable(with = RegionCodeSerializer::class)
-public value class RegionCode public constructor(
+public value class RegionCode internal constructor(
     public override val value: String
 ) : LocationCode {
 
@@ -33,6 +33,26 @@ public value class RegionCode public constructor(
 
         return CountryCode(value = value)
     }
+}
+
+/**
+ * Constructs an instance of [RegionCode] with the provided [value].
+ *
+ * @param [value] The ISO 3166-2 A [String] value.
+ *
+ * @throws [IllegalArgumentException] if the provided [value] is not a valid ISO 3155-2 A code value.
+ *
+ * @return [RegionCode]
+ */
+@Throws(IllegalArgumentException::class)
+public operator fun RegionCode.Companion.invoke(value: String): RegionCode {
+    val code = LocationCode(value)
+
+    if (code !is RegionCode) {
+        throw IllegalArgumentException("Provided location code '$value' was not a valid region code.")
+    }
+
+    return code
 }
 
 /**

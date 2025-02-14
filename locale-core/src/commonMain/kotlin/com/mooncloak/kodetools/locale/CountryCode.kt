@@ -17,11 +17,31 @@ import kotlin.jvm.JvmInline
  */
 @JvmInline
 @Serializable(with = CountryCodeSerializer::class)
-public value class CountryCode public constructor(
+public value class CountryCode internal constructor(
     public override val value: String
 ) : LocationCode {
 
     override fun toCountryCode(): CountryCode = this
+}
+
+/**
+ * Constructs an instance of [CountryCode] with the provided [value].
+ *
+ * @param [value] The ISO 3166-1 Alpha 2 [String] value.
+ *
+ * @throws [IllegalArgumentException] if the provided [value] was not a valid ISO 3166-1 Alpha 2 code value.
+ *
+ * @return [CountryCode]
+ */
+@Throws(IllegalArgumentException::class)
+public operator fun CountryCode.Companion.invoke(value: String): CountryCode {
+    val code = LocationCode(value)
+
+    if (code !is CountryCode) {
+        throw IllegalArgumentException("Provided location code '$value' was not a valid country code.")
+    }
+
+    return code
 }
 
 /**

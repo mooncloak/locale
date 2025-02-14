@@ -38,21 +38,42 @@ public sealed interface LocationCode {
 /**
  * Retrieves a [LocationCode] instance wrapping the provided location code [value].
  *
- * > [!Note]
- * > This is not a validating function. This means if an invalid code value is provided to this function it will return
- * > an invalid [LocationCode].
- *
  * @param [value] The location code [String] value. This can be either a [CountryCode] or [RegionCode].
+ *
+ * @throws [IllegalArgumentException] if the provided [value] is an invalid location code [String].
  *
  * @return The resulting [LocationCode].
  */
+@Throws(IllegalArgumentException::class)
 public operator fun LocationCode.Companion.invoke(value: String): LocationCode {
-    val hyphenIndex = value.indexOf('-')
+    require(value.isNotBlank()) {
+        "Invalid location code value. Value was blank."
+    }
 
-    return if (hyphenIndex == -1) {
-        CountryCode(value = value)
+    require(value.matches("^[A-Za-z0-9-]+$".toRegex())) {
+        "Invalid location code value '${value}'. Only alphanumeric and hyphen characters are supported."
+    }
+
+    val separatorIndex = value.indexOf('-')
+
+    return if (separatorIndex == -1) {
+        require(value.length == 2) {
+            "Invalid country code length '${value.length}'. Country codes must be in ISO 3166-1 Alpha-2 format. Meaning that there must only be two characters."
+        }
+        require(value.all { char -> char.isLetter() }) {
+            "Invalid country code '${value}'. Country codes must be in ISO 3166-1 Alpha-2 format. Meaning that the character values must all be letters."
+        }
+
+        CountryCode(value = value.uppercase())
     } else {
-        RegionCode(value = value)
+        require(separatorIndex == 2) {
+            "Invalid region code '${value}'. Region codes must be in ISO 3166-2 format. Meaning that it must start with a two character country code."
+        }
+        require(value.substring(0 until separatorIndex).all { char -> char.isLetter() }) {
+            "Invalid country code '${value}'. Country codes must be in ISO 3166-1 Alpha-2 format. Meaning that the character values must all be letters."
+        }
+
+        RegionCode(value = value.uppercase())
     }
 }
 
