@@ -33,8 +33,8 @@ internal class RegionSqliteSource internal constructor(
                     id = Uuid.random().toHexString(),
                     created = now,
                     updated = now,
-                    code = region.code.value,
-                    country_code = region.code.toCountryCode().value,
+                    code = region.code.value.uppercase(),
+                    country_code = region.code.toCountryCode().value.uppercase(),
                     name = region.name,
                     flag = region.flag,
                     emoji_flag = region.emojiFlag,
@@ -59,8 +59,8 @@ internal class RegionSqliteSource internal constructor(
                             id = Uuid.random().toHexString(),
                             created = now,
                             updated = now,
-                            code = region.code.value,
-                            country_code = region.code.toCountryCode().value,
+                            code = region.code.value.uppercase(),
+                            country_code = region.code.toCountryCode().value.uppercase(),
                             name = region.name,
                             flag = region.flag,
                             emoji_flag = region.emojiFlag,
@@ -78,7 +78,7 @@ internal class RegionSqliteSource internal constructor(
                 val database = databaseProvider.get()
 
                 database.regionQueries.updateAllByCode(
-                    code = region.code.value,
+                    code = region.code.value.uppercase(),
                     name = region.name,
                     flag = region.flag,
                     emojiFlag = region.emojiFlag,
@@ -94,7 +94,7 @@ internal class RegionSqliteSource internal constructor(
             mutex.withLock {
                 val database = databaseProvider.get()
 
-                database.regionQueries.deleteByCode(code.value)
+                database.regionQueries.deleteByCode(code.value.uppercase())
             }
         }
     }
@@ -104,7 +104,7 @@ internal class RegionSqliteSource internal constructor(
             mutex.withLock {
                 val database = databaseProvider.get()
 
-                database.regionQueries.deleteIn(codes.map { it.value })
+                database.regionQueries.deleteIn(codes.map { it.value.uppercase() })
             }
         }
     }
@@ -124,7 +124,7 @@ internal class RegionSqliteSource internal constructor(
             val database = databaseProvider.get()
 
             return@withContext if (code != null) {
-                database.regionQueries.countAllInCountry(code.value)
+                database.regionQueries.countAllInCountry(code.value.uppercase())
                     .executeAsOne()
                     .toInt()
             } else {
@@ -138,7 +138,7 @@ internal class RegionSqliteSource internal constructor(
         withContext(dispatcher) {
             val database = databaseProvider.get()
 
-            return@withContext database.regionQueries.selectByCode(code.value)
+            return@withContext database.regionQueries.selectByCode(code.value.uppercase())
                 .executeAsOneOrNull()
                 ?.toRegion()
                 ?: throw NoSuchElementException("No '${Region::class.simpleName}' found with code '${code.value}'.")
@@ -150,7 +150,7 @@ internal class RegionSqliteSource internal constructor(
 
             return@withContext if (code != null) {
                 database.regionQueries.selectPageInCountry(
-                    countryCode = code.value,
+                    countryCode = code.value.uppercase(),
                     limit = count.toLong(),
                     offset = offset.toLong()
                 ).executeAsList()
@@ -167,7 +167,7 @@ internal class RegionSqliteSource internal constructor(
             val database = databaseProvider.get()
 
             return@withContext if (code != null) {
-                database.regionQueries.selectAllForCountry(code.value)
+                database.regionQueries.selectAllForCountry(code.value.uppercase())
                     .executeAsList()
                     .map { it.toRegion() }
             } else {
@@ -181,7 +181,7 @@ internal class RegionSqliteSource internal constructor(
         withContext(dispatcher) {
             val database = databaseProvider.get()
 
-            return@withContext database.regionQueries.selectIn(codes.map { it.value })
+            return@withContext database.regionQueries.selectIn(codes.map { it.value.uppercase() })
                 .executeAsList()
                 .map { it.toRegion() }
         }

@@ -32,7 +32,7 @@ internal class CountrySqliteSource internal constructor(
                     id = Uuid.random().toHexString(),
                     created = now,
                     updated = now,
-                    code = country.code.value,
+                    code = country.code.value.uppercase(),
                     name = country.name,
                     region_type = country.regionType,
                     flag = country.flag,
@@ -57,7 +57,7 @@ internal class CountrySqliteSource internal constructor(
                             id = Uuid.random().toHexString(),
                             created = now,
                             updated = now,
-                            code = country.code.value,
+                            code = country.code.value.uppercase(),
                             name = country.name,
                             region_type = country.regionType,
                             flag = country.flag,
@@ -77,7 +77,7 @@ internal class CountrySqliteSource internal constructor(
                 val now = clock.now()
 
                 database.countryQueries.updateAllByCode(
-                    code = country.code.value,
+                    code = country.code.value.uppercase(),
                     name = country.name,
                     regionType = country.regionType,
                     flag = country.flag,
@@ -94,7 +94,7 @@ internal class CountrySqliteSource internal constructor(
             mutex.withLock {
                 val database = databaseProvider.get()
 
-                database.countryQueries.deleteByCode(code.value)
+                database.countryQueries.deleteByCode(code.value.uppercase())
             }
         }
     }
@@ -104,7 +104,7 @@ internal class CountrySqliteSource internal constructor(
             mutex.withLock {
                 val database = databaseProvider.get()
 
-                database.countryQueries.deleteIn(codes.map { it.value })
+                database.countryQueries.deleteIn(codes.map { it.value.uppercase() })
             }
         }
     }
@@ -132,7 +132,7 @@ internal class CountrySqliteSource internal constructor(
         withContext(dispatcher) {
             val database = databaseProvider.get()
 
-            return@withContext database.countryQueries.selectByCode(code.value)
+            return@withContext database.countryQueries.selectByCode(code.value.uppercase())
                 .executeAsOneOrNull()
                 ?.toCountry()
                 ?: throw NoSuchElementException("No '${Country::class.simpleName}' found with code '${code.value}'.")
@@ -160,7 +160,7 @@ internal class CountrySqliteSource internal constructor(
         withContext(dispatcher) {
             val database = databaseProvider.get()
 
-            return@withContext database.countryQueries.selectIn(codes = codes.map { it.value })
+            return@withContext database.countryQueries.selectIn(codes = codes.map { it.value.uppercase() })
                 .executeAsList()
                 .map { it.toCountry() }
         }
