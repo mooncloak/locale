@@ -36,6 +36,27 @@ public sealed interface LocationCode {
 }
 
 /**
+ * Retrieves a [LocationCode] instance wrapping the provided location code [value].
+ *
+ * > [!Note]
+ * > This is not a validating function. This means if an invalid code value is provided to this function it will return
+ * > an invalid [LocationCode].
+ *
+ * @param [value] The location code [String] value. This can be either a [CountryCode] or [RegionCode].
+ *
+ * @return The resulting [LocationCode].
+ */
+public operator fun LocationCode.Companion.invoke(value: String): LocationCode {
+    val hyphenIndex = value.indexOf('-')
+
+    return if (hyphenIndex == -1) {
+        CountryCode(value = value)
+    } else {
+        RegionCode(value = value)
+    }
+}
+
+/**
  * Serializes a [LocationCode] as a [String].
  */
 internal object LocationCodeSerializer : KSerializer<LocationCode> {
@@ -44,13 +65,8 @@ internal object LocationCodeSerializer : KSerializer<LocationCode> {
 
     override fun deserialize(decoder: Decoder): LocationCode {
         val value = decoder.decodeString()
-        val hyphenIndex = value.indexOf('-')
 
-        return if (hyphenIndex == -1) {
-            CountryCode(value = value)
-        } else {
-            RegionCode(value = value)
-        }
+        return LocationCode(value = value)
     }
 
     override fun serialize(encoder: Encoder, value: LocationCode) {
