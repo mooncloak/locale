@@ -38,7 +38,7 @@ SET name = :name,
     flag = :flag,
     emoji_flag = :emojiFlag,
     updated = :updated
-WHERE code = :code;
+WHERE UPPER(code) = UPPER(:code);
 
 countAll:
 SELECT COUNT(*)
@@ -47,7 +47,7 @@ FROM region;
 countAllInCountry:
 SELECT COUNT(*)
 FROM region
-WHERE country_code = :countryCode;
+WHERE UPPER(country_code) = UPPER(:countryCode);
 
 selectById:
 SELECT *
@@ -57,7 +57,7 @@ WHERE id = :id;
 selectByCode:
 SELECT *
 FROM region
-WHERE code = :code;
+WHERE UPPER(code) = UPPER(:code);
 
 selectAll:
 SELECT *
@@ -66,7 +66,7 @@ FROM region;
 selectAllForCountry:
 SELECT *
 FROM region
-WHERE country_code = :countryCode;
+WHERE UPPER(country_code) = UPPER(:countryCode);
 
 selectIn:
 SELECT *
@@ -83,7 +83,7 @@ OFFSET :offset;
 selectPageInCountry:
 SELECT *
 FROM region
-WHERE country_code = :countryCode
+WHERE UPPER(country_code) = UPPER(:countryCode)
 ORDER BY code
 LIMIT :limit
 OFFSET :offset;
@@ -94,7 +94,7 @@ WHERE id = :id;
 
 deleteByCode:
 DELETE FROM region
-WHERE code = :code;
+WHERE UPPER(code) = UPPER(:code);
 
 deleteIn:
 DELETE FROM region

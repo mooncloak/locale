@@ -36,7 +36,7 @@ SET name = :name,
     flag = :flag,
     emoji_flag = :emojiFlag,
     updated = :updated
-WHERE code = :code;
+WHERE UPPER(code) = UPPER(:code);
 
 countAll:
 SELECT COUNT(*)
@@ -50,7 +50,7 @@ WHERE id = :id;
 selectByCode:
 SELECT *
 FROM country
-WHERE code = :code;
+WHERE UPPER(code) = UPPER(:code);
 
 selectAll:
 SELECT *
@@ -74,7 +74,7 @@ WHERE id = :id;
 
 deleteByCode:
 DELETE FROM country
-WHERE code = :code;
+WHERE UPPER(code) = UPPER(:code);
 
 deleteIn:
 DELETE FROM country
